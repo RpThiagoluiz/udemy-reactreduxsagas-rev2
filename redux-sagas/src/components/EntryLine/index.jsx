@@ -1,6 +1,10 @@
 import { Segment, Grid, Icon } from 'semantic-ui-react';
 
-export const EntryLine = ({ description, value, isExpense = false }) => (
+//descostruir a props entries. ou passar cada uma
+export const EntryLine = ({
+  entry: { id, description, value, isExpense = false },
+  onDeleteEntry,
+}) => (
   <Segment color={isExpense ? 'red' : 'green'}>
     <Grid columns={3} textAlign="right">
       <Grid.Row>
@@ -12,7 +16,7 @@ export const EntryLine = ({ description, value, isExpense = false }) => (
         </Grid.Column>
         <Grid.Column width={3}>
           <Icon name="edit" />
-          <Icon name="trash" />
+          <Icon name="trash" onClick={() => onDeleteEntry(id)} />
         </Grid.Column>
       </Grid.Row>
     </Grid>
