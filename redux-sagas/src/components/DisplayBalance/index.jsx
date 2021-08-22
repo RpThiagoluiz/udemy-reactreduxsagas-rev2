@@ -1,4 +1,5 @@
-import { Statistic } from 'semantic-ui-react';
+import { Statistic } from 'semantic-ui-react'
+
 export const DisplayBalance = ({
   color = 'black',
   value = '00.00',
@@ -9,4 +10,4 @@ export const DisplayBalance = ({
     <Statistic.Label style={{ textAlign: 'left' }}>{title}: </Statistic.Label>
     <Statistic.Value>{value}</Statistic.Value>
   </Statistic>
-);
+)

@@ -1,9 +1,11 @@
 import { Button } from 'semantic-ui-react';
 
-export const ButtonSaveOrCancel = () => (
+export const ButtonSaveOrCancel = ({ addEntry }) => (
   <Button.Group style={{ marginTop: 20 }}>
     <Button>Cancel</Button>
     <Button.Or />
-    <Button primary>Ok</Button>
+    <Button primary onClick={() => addEntry()}>
+      Ok
+    </Button>
   </Button.Group>
 );
