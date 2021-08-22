@@ -1,30 +1,29 @@
 /* eslint no-return-assign: "error" */
-import { useEffect, useState } from 'react';
-import { Container } from 'semantic-ui-react';
-import { MainHeader } from './components/MainHeader';
-import './App.css';
-import { NewEntryForm } from './components/NewEntryForm';
-import { DisplayBalance } from './components/DisplayBalance';
-import { DisplayBalances } from './components/DisplayBalances';
-//  import { EntryLine } from './components/EntryLine'
-import { initialEntries } from './api/fakedata';
-import { EntryLineList } from './components/EntryLineList';
-import { ModalEdit } from './components/ModalEdit';
+import { useEffect, useState } from "react";
+import { Container } from "semantic-ui-react";
+import { MainHeader } from "./components/MainHeader";
+import "./App.css";
+import { NewEntryForm } from "./components/NewEntryForm";
+import { DisplayBalance } from "./components/DisplayBalance";
+import { DisplayBalances } from "./components/DisplayBalances";
+import { initialEntries } from "./api/fakedata";
+import { EntryLineList } from "./components/EntryLineList";
+import { ModalEdit } from "./components/ModalEdit";
 
 export const App = () => {
   const [entries, setEntries] = useState(initialEntries);
-  const [description, setDescription] = useState('');
-  const [value, setValue] = useState('');
+  const [description, setDescription] = useState("");
+  const [value, setValue] = useState("");
   const [isExpense, setIsExpense] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
-  const [entryId, setEntryId] = useState('');
+  const [entryId, setEntryId] = useState("");
   const [incomeTotal, setIncomeTotal] = useState(0);
   const [expenseTotal, setExpenseTotal] = useState(0);
   const [total, setTotal] = useState(0);
 
   const resetEntry = () => {
-    setDescription('');
-    setValue('');
+    setDescription("");
+    setValue("");
     setIsExpense(true);
   };
 
@@ -38,6 +37,7 @@ export const App = () => {
       setEntries(newEntries);
       resetEntry();
     }
+    // eslint-disable-next-line
   }, [isOpen]);
 
   useEffect(() => {
