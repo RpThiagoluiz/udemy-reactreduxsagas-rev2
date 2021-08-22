@@ -5,6 +5,8 @@ import {
   Segment,
   Statistic,
   Icon,
+  Form,
+  Button,
 } from 'semantic-ui-react';
 import './App.css';
 
@@ -89,5 +91,28 @@ export const App = () => (
         </Grid.Row>
       </Grid>
     </Segment>
+
+    <Header as="h3">Add new transaction</Header>
+    <Form unstackable>
+      <Form.Group>
+        <Form.Input
+          icon="tags"
+          width={12}
+          label="Description"
+          placeholder="New shinny thing"
+        />
+        <Form.Input
+          icon="dollar"
+          width={12}
+          label="Value"
+          placeholder="100.00"
+        />
+      </Form.Group>
+      <Button.Group style={{ marginTop: 20 }}>
+        <Button color="red">Cancel</Button>
+        <Button.Or />
+        <Button primary>Ok</Button>
+      </Button.Group>
+    </Form>
   </Container>
 );
