@@ -1,17 +1,16 @@
 /* eslint no-return-assign: "error" */
 import { useEffect, useState } from "react";
 import { Container } from "semantic-ui-react";
+import { useSelector } from "react-redux";
 import { MainHeader } from "./components/MainHeader";
 import "./App.css";
 import { NewEntryForm } from "./components/NewEntryForm";
 import { DisplayBalance } from "./components/DisplayBalance";
 import { DisplayBalances } from "./components/DisplayBalances";
-import { initialEntries } from "./api/fakedata";
 import { EntryLineList } from "./components/EntryLineList";
 import { ModalEdit } from "./components/ModalEdit";
 
 export const App = () => {
-  const [entries, setEntries] = useState(initialEntries);
   const [description, setDescription] = useState("");
   const [value, setValue] = useState("");
   const [isExpense, setIsExpense] = useState(true);
@@ -20,6 +19,8 @@ export const App = () => {
   const [incomeTotal, setIncomeTotal] = useState(0);
   const [expenseTotal, setExpenseTotal] = useState(0);
   const [total, setTotal] = useState(0);
+
+  const entries = useSelector((state) => state.entries);
 
   const resetEntry = () => {
     setDescription("");
@@ -34,7 +35,7 @@ export const App = () => {
       newEntries[index].description = description;
       newEntries[index].value = value;
       newEntries[index].isExpense = isExpense;
-      setEntries(newEntries);
+      // setEntries(newEntries);
       resetEntry();
     }
     // eslint-disable-next-line
@@ -61,7 +62,8 @@ export const App = () => {
       value,
       isExpense,
     });
-    setEntries(result);
+    console.log(result);
+    //setEntries(result);
     resetEntry();
   };
 
@@ -77,11 +79,6 @@ export const App = () => {
     }
   };
 
-  const deleteEntry = (id) => {
-    const result = entries.filter((entry) => entry.id !== id);
-    setEntries(result);
-  };
-
   return (
     <>
       <Container>
@@ -92,21 +89,9 @@ export const App = () => {
           expenseTotal={expenseTotal}
         />
         <MainHeader type="h3" title="History" />
-        <EntryLineList
-          data={entries}
-          onDeleteEntry={deleteEntry}
-          editEntry={editEntry}
-        />
+        <EntryLineList data={entries} editEntry={editEntry} />
         <MainHeader title="Add new Transaction" type="h3" />
-        <NewEntryForm
-          addEntry={addEntry}
-          description={description}
-          setDescription={setDescription}
-          value={value}
-          setValue={setValue}
-          isExpense={isExpense}
-          setIsExpense={setIsExpense}
-        />
+        <NewEntryForm />
       </Container>
       <ModalEdit
         isOpen={isOpen}
