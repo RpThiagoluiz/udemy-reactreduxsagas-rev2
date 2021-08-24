@@ -10,6 +10,14 @@ const entriesReducer = (state = initialEntries, action) => {
         (entry) => entry.id !== action.payload.id
       );
       return removeEntry;
+    case "UPDATE_ENTRY":
+      const updateEntries = [...state];
+      const index = updateEntries.findIndex(
+        (entry) => entry.id === action.payload.id
+      );
+      updateEntries[index] = { ...action.payload.entry };
+
+      return updateEntries;
 
     default:
       return state;

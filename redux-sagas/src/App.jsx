@@ -11,35 +11,18 @@ import { EntryLineList } from "./components/EntryLineList";
 import { ModalEdit } from "./components/ModalEdit";
 
 export const App = () => {
-  const [description, setDescription] = useState("");
-  const [value, setValue] = useState("");
-  const [isExpense, setIsExpense] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);
-  const [entryId, setEntryId] = useState("");
   const [incomeTotal, setIncomeTotal] = useState(0);
   const [expenseTotal, setExpenseTotal] = useState(0);
   const [total, setTotal] = useState(0);
+  const [entry, setEntry] = useState({}); //if null other away
 
   const entries = useSelector((state) => state.entries);
-
-  const resetEntry = () => {
-    setDescription("");
-    setValue("");
-    setIsExpense(true);
-  };
+  const { isOpen: isOpenRedux, id } = useSelector((state) => state.modals);
 
   useEffect(() => {
-    if (!isOpen && entryId) {
-      const index = entries.findIndex((entry) => entry.id === entryId);
-      const newEntries = [...entries];
-      newEntries[index].description = description;
-      newEntries[index].value = value;
-      newEntries[index].isExpense = isExpense;
-      // setEntries(newEntries);
-      resetEntry();
-    }
-    // eslint-disable-next-line
-  }, [isOpen]);
+    const index = entries.findIndex((entry) => entry.id === id);
+    setEntry(entries[index]);
+  }, [isOpenRedux, id, entries]);
 
   useEffect(() => {
     let totalExpense = 0;
@@ -55,30 +38,6 @@ export const App = () => {
     setTotal(totalIncome - totalExpense);
   }, [entries]);
 
-  const addEntry = () => {
-    const result = entries.concat({
-      id: entries.lenght + 1,
-      description,
-      value,
-      isExpense,
-    });
-    console.log(result);
-    //setEntries(result);
-    resetEntry();
-  };
-
-  const editEntry = (id) => {
-    if (id) {
-      const index = entries.findIndex((entry) => entry.id === id);
-      const entry = entries[index];
-      setDescription(entry.description);
-      setValue(entry.value);
-      setIsExpense(entry.isExpense);
-      setEntryId(entry.id);
-      setIsOpen(true);
-    }
-  };
-
   return (
     <>
       <Container>
@@ -89,21 +48,13 @@ export const App = () => {
           expenseTotal={expenseTotal}
         />
         <MainHeader type="h3" title="History" />
-        <EntryLineList data={entries} editEntry={editEntry} />
+        <EntryLineList data={entries} />
         <MainHeader title="Add new Transaction" type="h3" />
         <NewEntryForm />
       </Container>
-      <ModalEdit
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        addEntry={addEntry}
-        description={description}
-        setDescription={setDescription}
-        value={value}
-        setValue={setValue}
-        isExpense={isExpense}
-        setIsExpense={setIsExpense}
-      />
+      {/* // pegar os dados vc pode passar stread e pegar so os valores modificados  <ModalEdit isOpen={isOpenRedux} entry={entry} /> */}
+      {/* <ModalEdit isOpen={isOpenRedux} {...entry} /> */}
+      <ModalEdit isOpen={isOpenRedux} entry={entry} />
     </>
   );
 };
