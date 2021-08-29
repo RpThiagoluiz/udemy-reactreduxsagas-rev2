@@ -1,0 +1,10 @@
+
+POST http://localhost:3333/values
+Content-Type: application/json
+
+{
+  "id": 10,
+  "description": "test",
+  "value": 100,
+  "isExpense": false
+}
