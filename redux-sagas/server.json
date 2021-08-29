@@ -1,26 +1,31 @@
 {
   "entries": [
     {
-      "id": 2,
-      "description": "test",
-      "value": 100,
-      "isExpense": false
+      "id": 3,
+      "description": "Padaria"
     },
     {
+      "id": 10,
+      "description": "bad"
+    },
+    {
+      "id": 100,
+      "description": "badss"
+    }
+  ],
+  "values": [
+    {
       "id": 3,
-      "description": "Padaria",
       "value": 15,
       "isExpense": true
     },
     {
-      "id": 4,
-      "description": "Mercado",
-      "value": 9.8,
-      "isExpense": true
+      "id": 10,
+      "value": 100,
+      "isExpense": false
     },
     {
-      "id": 10,
-      "description": "test",
+      "id": 100,
       "value": 100,
       "isExpense": false
     }

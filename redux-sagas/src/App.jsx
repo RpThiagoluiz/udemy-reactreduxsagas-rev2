@@ -24,7 +24,7 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(getAllEntries());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const index = entries.findIndex((entry) => entry.id === id);
