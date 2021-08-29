@@ -1,0 +1,8 @@
+PUT  http://localhost:3333/entries/2
+Content-Type: application/json
+
+{
+  "id": 100,
+  "value": 100,
+  "isExpense": false
+}
