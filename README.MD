@@ -1,2 +1,2 @@
-All project make in udemy - React, ReactRedux and Redux Saga
+This project is just for up my Redux skills in react.
 
